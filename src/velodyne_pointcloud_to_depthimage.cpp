@@ -20,9 +20,14 @@ class VelodynePointcloudToDepthimage{
 		cv::Mat _img_cv;
 		/*point cloud*/
 		std::vector<pcl::PointCloud<pcl::PointXYZI>::Ptr> _rings;
+		/*counter*/
+		int _save_counter = 0;
 		/*parameter*/
 		int _num_ring;
 		int _points_per_ring;
+		int _save_limit;
+		std::string _save_dir_path;
+		std::string _save_img_name;
 
 	public:
 		VelodynePointcloudToDepthimage();
@@ -41,6 +46,12 @@ VelodynePointcloudToDepthimage::VelodynePointcloudToDepthimage()
 	std::cout << "_num_ring = " << _num_ring << std::endl;
 	_nhPrivate.param("points_per_ring", _points_per_ring, 1092);
 	std::cout << "_points_per_ring = " << _points_per_ring << std::endl;
+	_nhPrivate.param("save_limit", _save_limit, -1);
+	std::cout << "_save_limit = " << _save_limit << std::endl;
+	_nhPrivate.param("save_dir_path", _save_dir_path, std::string("saved"));
+	std::cout << "_save_dir_path = " << _save_dir_path << std::endl;
+	_nhPrivate.param("save_img_name", _save_img_name, std::string("32e_"));
+	std::cout << "_save_img_name = " << _save_img_name << std::endl;
 	/*sub*/
 	_sub_pc = _nh.subscribe("/velodyne_points", 1, &VelodynePointcloudToDepthimage::callbackPC, this);
 	/*pub*/
@@ -95,8 +106,11 @@ void VelodynePointcloudToDepthimage::ringsToImage(void)
 			_img_cv.at<double>(row, col) = sqrt(_rings[i]->points[j].x*_rings[i]->points[j].x + _rings[i]->points[j].y*_rings[i]->points[j].y);
 		}
 	}
-	std::string save_img_path = "/home/amsl/ozaki/depthimage_example.jpg";
-	cv::imwrite(save_img_path, _img_cv);
+	if(_save_limit > 0 && _save_counter < _save_limit){
+		std::string save_img_path = _save_dir_path + "/" + _save_img_name + std::to_string(_save_counter) + ".jpg";
+		cv::imwrite(save_img_path, _img_cv);
+		++_save_counter;
+	}
 }
 
 void VelodynePointcloudToDepthimage::publication(std_msgs::Header header)

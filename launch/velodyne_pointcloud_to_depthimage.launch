@@ -13,5 +13,7 @@
 
 	<!-- main -->
 	<node pkg="velodyne_pointcloud_to_depthimage" name="velodyne_pointcloud_to_depthimage" type="velodyne_pointcloud_to_depthimage" output="screen">
+		<param name="save_limit" type="int" value="10"/>
+		<param name="save_dir_path" type="string" value="$(find velodyne_pointcloud_to_depthimage)/saved"/>
 	</node>
 </launch>
