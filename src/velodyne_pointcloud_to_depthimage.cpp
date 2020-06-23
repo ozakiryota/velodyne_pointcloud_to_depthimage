@@ -88,10 +88,11 @@ void VelodynePointcloudToDepthimage::ringsToImage(void)
 
 	double angle_resolution = 2*M_PI/(double)_points_per_ring;
 	for(size_t i=0 ; i<_rings.size() ; ++i){
+		int row = _rings.size() - i - 1;
 		for(size_t j=0 ; j<_rings[i]->points.size() ; ++j){
 			double angle = atan2(_rings[i]->points[j].y, _rings[i]->points[j].x);
 			int col = (int)((angle + M_PI)/angle_resolution);
-			_img_cv.at<double>(i, col) = sqrt(_rings[i]->points[j].x*_rings[i]->points[j].x + _rings[i]->points[j].y*_rings[i]->points[j].y);
+			_img_cv.at<double>(row, col) = sqrt(_rings[i]->points[j].x*_rings[i]->points[j].x + _rings[i]->points[j].y*_rings[i]->points[j].y);
 		}
 	}
 	std::string save_img_path = "/home/amsl/ozaki/depthimage_example.jpg";
