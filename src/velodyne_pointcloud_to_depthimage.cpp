@@ -25,6 +25,7 @@ class VelodynePointcloudToDepthimage{
 		/*parameter*/
 		int _num_ring;
 		int _points_per_ring;
+		double _depth_resolution;
 		int _save_limit;
 		std::string _save_dir_path;
 		std::string _save_img_name;
@@ -46,6 +47,8 @@ VelodynePointcloudToDepthimage::VelodynePointcloudToDepthimage()
 	std::cout << "_num_ring = " << _num_ring << std::endl;
 	_nhPrivate.param("points_per_ring", _points_per_ring, 1092);
 	std::cout << "_points_per_ring = " << _points_per_ring << std::endl;
+	_nhPrivate.param("depth_resolution", _depth_resolution, 0.1);
+	std::cout << "_depth_resolution = " << _depth_resolution << std::endl;
 	_nhPrivate.param("save_limit", _save_limit, -1);
 	std::cout << "_save_limit = " << _save_limit << std::endl;
 	_nhPrivate.param("save_dir_path", _save_dir_path, std::string("saved"));
@@ -115,11 +118,13 @@ void VelodynePointcloudToDepthimage::ringsToImage(void)
 
 void VelodynePointcloudToDepthimage::publication(std_msgs::Header header)
 {
+	/*publish*/
 	cv::Mat img_cv_bit;
-	_img_cv.convertTo(img_cv_bit, CV_16UC1);
+	_img_cv.convertTo(img_cv_bit, CV_16UC1, 1/_depth_resolution, 0);
 	sensor_msgs::ImagePtr img_ros = cv_bridge::CvImage(header, "mono16", img_cv_bit).toImageMsg();
 	_pub_img.publish(img_ros);
 
+	/*print*/
 	std::cout << "_img_cv = " << _img_cv << std::endl;
 	std::cout << "img_cv_bit = " << img_cv_bit << std::endl;
 	int row = 0;
