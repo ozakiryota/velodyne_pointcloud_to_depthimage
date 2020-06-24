@@ -2,6 +2,7 @@
 Generate depth images from velodyne point cloud.
 ## DEMO
 Preparing...
+![velodyne_pointcloud_to_depthimage](https://user-images.githubusercontent.com/37431972/85519804-04528a80-b63d-11ea-9445-fff72af9715f.png)
 ## Features
 * Input: sensor_msgs::PointCloud2
 * Output: sensor_msgs::ImagePtr (mono16)
