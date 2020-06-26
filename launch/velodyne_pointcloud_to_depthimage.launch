@@ -16,7 +16,7 @@
 	<node pkg="velodyne_pointcloud_to_depthimage" name="velodyne_pointcloud_to_depthimage" type="velodyne_pointcloud_to_depthimage" output="screen">
 		<!-- <param name="num_ring" type="int" value="32"/> -->
 		<!-- <param name="points_per_ring" type="int" value="1092"/> -->
-		<param name="depth_resolution" type="double" value="0.0001"/>
+		<!-- <param name="depth_resolution" type="double" value="0.01"/> -->
 		<!-- <param name="max_range" type="double" value="100.0"/> -->
 		<param name="save_limit" type="int" value="10"/>
 		<param name="save_root_path" type="string" value="$(find velodyne_pointcloud_to_depthimage)/saved"/>
