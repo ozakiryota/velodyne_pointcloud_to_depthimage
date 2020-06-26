@@ -178,6 +178,7 @@ void VelodynePointcloudToDepthimage::publication(std_msgs::Header header)
 	_pub_img_8u.publish(img_ros_8u);
 
 	/*check*/
+	/*
 	cv_bridge::CvImagePtr cv_ptr_64f = cv_bridge::toCvCopy(img_ros_64f, img_ros_64f->encoding);
 	cv_bridge::CvImagePtr cv_ptr_16u = cv_bridge::toCvCopy(img_ros_16u, img_ros_16u->encoding);
 	cv_bridge::CvImagePtr cv_ptr_8u = cv_bridge::toCvCopy(img_ros_8u, img_ros_8u->encoding);
@@ -189,6 +190,7 @@ void VelodynePointcloudToDepthimage::publication(std_msgs::Header header)
 			std::cout << "(int)cv_ptr_8u->image.at<unsigned char>(" << row << ", " << col << ") = " << (int)cv_ptr_8u->image.at<unsigned char>(row, col) << std::endl;
 		}
 	}
+	*/
 }
 
 int main(int argc, char** argv)
