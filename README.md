@@ -3,9 +3,13 @@ Generate depth images from velodyne point cloud.
 ## DEMO
 ![velodyne_pointcloud_to_depthimage](https://user-images.githubusercontent.com/37431972/85836136-21b85d80-b7d1-11ea-9797-9ccabb597f75.png)
 ## Features
-* Input: sensor_msgs::PointCloud2
-* Output: sensor_msgs::ImagePtr (mono16)
-* Save (optional): CV_64FC1 (double) in jpg
+* Input: "/velodyne_points" (sensor_msgs::PointCloud2)
+* Output:
+  * "/depth_image/64fc1" (sensor_msgs::Image) (64FC1)
+  * "/depth_image/8uc1" (sensor_msgs::Image) (mono8)
+* Save (optional):
+  * "\*\*\*/saved/\*\*\*.yaml" (CV_64FC1)
+  * "\*\*\*/saved/\*\*\*/\*\*\*.jpg" (CV_8UC1)
 ## Requirement
 * ROS
 * PCL
@@ -34,3 +38,6 @@ $ catkin_make
 ```bash
 $ roslaunch velodyne_pointcloud_to_depthimage velodyne_pointcloud_to_depthimage.launch
 ```
+## Note
+### ROS -> CV
+writing...
