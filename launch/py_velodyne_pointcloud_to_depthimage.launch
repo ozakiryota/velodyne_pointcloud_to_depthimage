@@ -12,14 +12,12 @@
 	<include file="$(find velodyne_pointcloud)/launch/32e_points.launch"/>
 
 	<!-- main -->
-	<node pkg="velodyne_pointcloud_to_depthimage" name="velodyne_pointcloud_to_depthimage" type="velodyne_pointcloud_to_depthimage" output="screen">
+	<node pkg="velodyne_pointcloud_to_depthimage" name="py_velodyne_pointcloud_to_depthimage" type="py_velodyne_pointcloud_to_depthimage.py" output="screen">
 		<!-- <param name="num_ring" type="int" value="32"/> -->
 		<!-- <param name="points_per_ring" type="int" value="1092"/> -->
-		<param name="depth_resolution" type="double" value="0.01"/>
+		<!-- <param name="depth_resolution" type="double" value="0.1"/> -->
 		<param name="save_limit" type="int" value="10"/>
-		<param name="save_root_path" type="string" value="$(find velodyne_pointcloud_to_depthimage)/saved"/>
-		<!-- <param name="save_yaml_name" type="string" value="32e_CV64FC1"/> -->
-		<!-- <param name="save_jpgdir_name" type="string" value="32e_CV16UC1"/> -->
-		<!-- <param name="save_img_name" type="string" value="depth_"/> -->
+		<param name="save_dir_path" type="string" value="$(find velodyne_pointcloud_to_depthimage)/saved"/>
+		<!-- <param name="save_img_name" type="string" value="32e_"/> -->
 	</node>
 </launch>
