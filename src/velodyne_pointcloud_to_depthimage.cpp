@@ -85,11 +85,13 @@ VelodynePointcloudToDepthimage::VelodynePointcloudToDepthimage()
 		pcl::PointCloud<pcl::PointXYZI>::Ptr tmp (new pcl::PointCloud<pcl::PointXYZI>);
 		_rings[i] = tmp;
 	}
-	std::string save_yaml_path = _save_root_path + "/" + _save_yaml_name + ".yml";
-	_fs.open(save_yaml_path, cv::FileStorage::WRITE);
-	if(!_fs.isOpened()){
-		std::cout << save_yaml_path << "cannot be opened" << std::endl;
-		exit(1);
+	if(_save_limit > 0){
+		std::string save_yaml_path = _save_root_path + "/" + _save_yaml_name + ".yml";
+		_fs.open(save_yaml_path, cv::FileStorage::WRITE);
+		if(!_fs.isOpened()){
+			std::cout << save_yaml_path << " cannot be opened" << std::endl;
+			exit(1);
+		}
 	}
 }
 
