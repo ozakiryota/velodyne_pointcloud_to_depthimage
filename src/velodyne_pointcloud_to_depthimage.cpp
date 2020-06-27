@@ -76,9 +76,9 @@ VelodynePointcloudToDepthimage::VelodynePointcloudToDepthimage()
 	/*sub*/
 	_sub_pc = _nh.subscribe("/velodyne_points", 1, &VelodynePointcloudToDepthimage::callbackPC, this);
 	/*pub*/
-	_pub_img_64f = _nh.advertise<sensor_msgs::Image>("/depth_imgae/64fc1", 1);
-	_pub_img_16u = _nh.advertise<sensor_msgs::Image>("/depth_imgae/16uc1", 1);
-	_pub_img_8u = _nh.advertise<sensor_msgs::Image>("/depth_imgae/8uc1", 1);
+	_pub_img_64f = _nh.advertise<sensor_msgs::Image>("/depth_image/64fc1", 1);
+	_pub_img_16u = _nh.advertise<sensor_msgs::Image>("/depth_image/16uc1", 1);
+	_pub_img_8u = _nh.advertise<sensor_msgs::Image>("/depth_image/8uc1", 1);
 	/*initialize*/
 	_rings.resize(_num_ring);
 	for(size_t i=0 ; i<_rings.size() ; ++i){
