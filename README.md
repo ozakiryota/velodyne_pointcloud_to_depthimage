@@ -60,10 +60,10 @@ $ roslaunch velodyne_pointcloud_to_depthimage velodyne_pointcloud_to_depthimage.
 ### Data type
 * 64FC1\<double\>: 2.2250738585072014e-308 ~ 1.7976931348623158e+308	
 * mono16\<unsigned short\>: 0 ~ 65535
-* mono8\<unsigned char\: 0 ~ 255
+* mono8\<unsigned char\>: 0 ~ 255
 ### ROS -> CV
 #### C++
-    #include <sensor_msgs/PointCloud2.h>
+    #include <sensor_msgs/Image.h>
     #include <opencv2/opencv.hpp>
     #include <cv_bridge/cv_bridge.h>
     sensor_msgs::ImagePtr ros_msg;
