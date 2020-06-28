@@ -10,9 +10,9 @@ Generate depth images from velodyne point cloud.
   * "/depth_image/16uc1" (sensor_msgs::Image) (mono16)
   * "/depth_image/8uc1" (sensor_msgs::Image) (mono8)
 * Save (optional):
-  * "\*\*\*.yaml" (CV_64FC1<double>)
-  * "\*\*\*/\*\*\*.jpg" (CV_16UC1<unsigned short>)
-  * "\*\*\*/\*\*\*.jpg" (CV_8UC1<unsigned char>)
+  * "\*\*\*.yaml" (CV_64FC1\<double\>)
+  * "\*\*\*/\*\*\*.jpg" (CV_16UC1\<unsigned short\>)
+  * "\*\*\*/\*\*\*.jpg" (CV_8UC1\<unsigned char\>)
 ## Requirement
 * ROS
 * PCL
@@ -58,6 +58,20 @@ $ roslaunch velodyne_pointcloud_to_depthimage velodyne_pointcloud_to_depthimage.
 ```
 ## Note
 ### Data type
-writing...
+* 64FC1\<double\>: 2.2250738585072014e-308 ~ 1.7976931348623158e+308	
+* mono16\<unsigned short\>: 0 ~ 65535
+* mono8\<unsigned char\: 0 ~ 255
 ### ROS -> CV
-writing...
+#### C++
+    #include <sensor_msgs/PointCloud2.h>
+    #include <opencv2/opencv.hpp>
+    #include <cv_bridge/cv_bridge.h>
+    sensor_msgs::ImagePtr ros_msg;
+    cv_bridge::CvImagePtr cv_ptr = cv_bridge::toCvCopy(ros_msg, ros_msg->encoding);
+    cv::Mat cv_mat = cv_ptr->image
+#### Python
+    from sensor_msgs.msg import Image
+    from cv_bridge import CvBridge
+    ros_img = Image()
+    bridge = CvBridge()
+    cv_img = bridge.imgmsg_to_cv2(ros_img, ros_img.encoding)
