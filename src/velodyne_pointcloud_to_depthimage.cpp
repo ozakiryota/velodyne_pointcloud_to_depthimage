@@ -133,7 +133,7 @@ void VelodynePointcloudToDepthimage::ringsToImage(void)
 		int row = _rings.size() - i - 1;
 		for(size_t j=0 ; j<_rings[i]->points.size() ; ++j){
 			double angle = atan2(_rings[i]->points[j].y, _rings[i]->points[j].x);
-			int col = (int)((angle + M_PI)/angle_resolution);
+			int col = _points_per_ring - (int)((angle + M_PI)/angle_resolution) - 1;
 			_img_cv_64f.at<double>(row, col) = sqrt(_rings[i]->points[j].x*_rings[i]->points[j].x + _rings[i]->points[j].y*_rings[i]->points[j].y);
 		}
 	}
