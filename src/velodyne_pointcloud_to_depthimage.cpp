@@ -107,7 +107,7 @@ void VelodynePointcloudToDepthimage::callbackPC(const sensor_msgs::PointCloud2Co
 
 void VelodynePointcloudToDepthimage::pcToRings(const sensor_msgs::PointCloud2& pc_msg)
 {
-	sensor_msgs::PointCloud2ConstIterator<int> iter_ring(pc_msg,"ring");
+	sensor_msgs::PointCloud2ConstIterator<uint16_t> iter_ring(pc_msg,"ring");
 	sensor_msgs::PointCloud2ConstIterator<float> iter_x(pc_msg,"x");
 	sensor_msgs::PointCloud2ConstIterator<float> iter_y(pc_msg,"y");
 	sensor_msgs::PointCloud2ConstIterator<float> iter_z(pc_msg,"z");
