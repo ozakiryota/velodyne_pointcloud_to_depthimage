@@ -11,8 +11,8 @@ Generate depth images from velodyne point cloud.
   * "/depth_image/8uc1" (sensor_msgs::Image) (mono8)
 * Save (optional):
   * "\*\*\*.yaml" (CV_64FC1\<double\>)
-  * "\*\*\*/\*\*\*.jpg" (CV_16UC1\<unsigned short\>)
-  * "\*\*\*/\*\*\*.jpg" (CV_8UC1\<unsigned char\>)
+  * "\*\*\*.jpg" (CV_16UC1\<unsigned short\>)
+  * "\*\*\*.jpg" (CV_8UC1\<unsigned char\>)
 ## Requirement
 * ROS
 * PCL
@@ -42,16 +42,9 @@ $ catkin_make
   (if you don't want to save any images, set as save_limit=-1)
   * {save_root_path}  
   path to directory for saving whole datas
-  * {save_jpgdir16u_name}  
-  name of directory for saving "mono16" images
-  * {save_jpgdir8u_name}  
-  name of directory for saving "mono8" images
   * {save_img_name}  
   name of saved image file  
-  (images are saved as "{save_root_path}/{save_jpgdir16u_name}/{save_img_name}1.jpg", "{save_root_path}/{save_jpgdir16u_name}/{save_img_name}2.jpg",,,)
-  * {save_yaml_name}  
-  name of saved yaml file  
-  (yaml file is saved as  "{save_root_path}/{save_yaml_name}.yml")
+  (images are saved as "{save_root_path}/{save_img_name}0_8u.jpg", "{save_root_path}/{save_img_name}1_8u.jpg",,,)
 ### Launch
 ```bash
 $ roslaunch velodyne_pointcloud_to_depthimage velodyne_pointcloud_to_depthimage.launch
@@ -75,3 +68,11 @@ $ roslaunch velodyne_pointcloud_to_depthimage velodyne_pointcloud_to_depthimage.
     ros_img = Image()
     bridge = CvBridge()
     cv_img = bridge.imgmsg_to_cv2(ros_img, ros_img.encoding)
+## Load .xml
+    cv::FileStorage fs("example/depth_0_64f.xml", cv::FileStorage::READ);
+    if (!fs.isOpened()){
+        std::cout << "File can not be opened." << std::endl;
+        exit(1);
+    }
+    cv::Mat mat;
+    fs["mat"] >> mat;
