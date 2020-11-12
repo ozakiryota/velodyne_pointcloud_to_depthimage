@@ -109,7 +109,8 @@ void VelodynePointcloudToDepthimage::pcToRings(const sensor_msgs::PointCloud2& p
 void VelodynePointcloudToDepthimage::ringsToImage(void)
 {
 	/*reset*/
-	_img_cv_64f = cv::Mat::zeros(_num_ring, _points_per_ring, CV_64FC1);
+	// _img_cv_64f = cv::Mat::zeros(_num_ring, _points_per_ring, CV_64FC1);
+	_img_cv_64f = cv::Mat(_num_ring, _points_per_ring, CV_64FC1, cv::Scalar(-1));
 	/*input*/
 	double angle_resolution = 2*M_PI/(double)_points_per_ring;
 	for(size_t i=0 ; i<_rings.size() ; ++i){

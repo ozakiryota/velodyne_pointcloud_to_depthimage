@@ -20,7 +20,7 @@
 		<!-- <param name="points_per_ring" type="int" value="1812"/>	<!&#45;&#45; VLP&#38;#45;32C &#45;&#45;> -->
 		<!-- <param name="depth_resolution" type="double" value="0.01"/> -->
 		<!-- <param name="max_range" type="double" value="100.0"/> -->
-		<param name="save_limit" type="int" value="10"/>
+		<!-- <param name="save_limit" type="int" value="10"/> -->
 		<param name="save_root_path" type="string" value="$(find velodyne_pointcloud_to_depthimage)/saved/tmp"/>
 		<!-- <param name="save_img_name" type="string" value="depth_"/> -->
 	</node>
