@@ -10,7 +10,7 @@ Generate depth images from velodyne point cloud.
   * "/depth_image/16uc1" (sensor_msgs::Image) (mono16)
   * "/depth_image/8uc1" (sensor_msgs::Image) (mono8)
 * Save (optional):
-  * "\*\*\*.yaml" (CV_64FC1\<double\>)
+  * "\*\*\*.xml" (CV_64FC1\<double\>)
   * "\*\*\*.jpg" (CV_16UC1\<unsigned short\>)
   * "\*\*\*.jpg" (CV_8UC1\<unsigned char\>)
 ## Requirement
@@ -68,7 +68,7 @@ $ roslaunch velodyne_pointcloud_to_depthimage velodyne_pointcloud_to_depthimage.
     ros_img = Image()
     bridge = CvBridge()
     cv_img = bridge.imgmsg_to_cv2(ros_img, ros_img.encoding)
-## Load .xml
+### Load .xml
     cv::FileStorage fs("example/depth_0_64f.xml", cv::FileStorage::READ);
     if (!fs.isOpened()){
         std::cout << "File can not be opened." << std::endl;
