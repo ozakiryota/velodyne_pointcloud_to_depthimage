@@ -127,10 +127,10 @@ void VelodynePointcloudToDepthimage::ringsToImage(void)
 	/*save*/
 	if(_save_limit > 0 && _save_counter < _save_limit){
 		/*CV_64FC1*/
-		std::string save_yaml_path = _save_root_path + "/" + _save_img_name + std::to_string(_save_counter) + "_64f.yml";
-		cv::FileStorage fs(save_yaml_path, cv::FileStorage::WRITE);
+		std::string save_mat64f_path = _save_root_path + "/" + _save_img_name + std::to_string(_save_counter) + "_64f.xml";
+		cv::FileStorage fs(save_mat64f_path, cv::FileStorage::WRITE);
 		if(!fs.isOpened()){
-			std::cout << save_yaml_path << " cannot be opened" << std::endl;
+			std::cout << save_mat64f_path << " cannot be opened" << std::endl;
 			exit(1);
 		}
 		fs << "mat" << _img_cv_64f;
