@@ -18,8 +18,6 @@ class VelodynePointcloudToDepthimage{
 		ros::Publisher _pub_img_64f;
 		ros::Publisher _pub_img_16u;
 		ros::Publisher _pub_img_8u;
-		/*file*/
-		cv::FileStorage _fs;
 		/*image*/
 		cv::Mat _img_cv_64f;
 		cv::Mat _img_cv_16u;
@@ -157,7 +155,6 @@ void VelodynePointcloudToDepthimage::ringsToImage(void)
 		//	}
 		//}
 	}
-	else	_fs.release();
 }
 
 void VelodynePointcloudToDepthimage::publication(std_msgs::Header header)
